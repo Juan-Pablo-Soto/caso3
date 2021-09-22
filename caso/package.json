@@ -1,0 +1,27 @@
+{
+  "name": "caso3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "ts": "tsc -w",
+    "dev": "nodemon ./build/server.js",
+    "star": "tsc && node ./buld/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/morgan": "^1.9.3",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.7",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^16.9.4",
+    "nodemon": "^2.0.12",
+    "typescript": "^4.4.3"
+  },
+  "keywords": [],
+  "description": ""
+}
