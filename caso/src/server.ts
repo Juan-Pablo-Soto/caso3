@@ -29,7 +29,7 @@ class Server {
 
     routes(){
         this.app.use(indexRoutes);
-        this.app.use('/api',articuloRoutes);
+        this.app.use('/api/articulos',articuloRoutes);
     }
 
     start(){
