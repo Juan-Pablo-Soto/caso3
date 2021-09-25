@@ -15,9 +15,11 @@ class ArticuloRoutes{
         res.json(articulos);
     }
 
-    getArticulo(req:Request, res:Response){
-        console.log(req.body);
-        res.json('Received');
+    async getArticulo(req:Request, res:Response){
+        const {url} = req.params;
+        console.log(url);
+        const articulo = await Articulo.findOne({name:url});
+        res.json({data:articulo});
     }
 
     async createArticulo(req:Request, res:Response){
@@ -27,20 +29,26 @@ class ArticuloRoutes{
         res.json({data:newArticulo});
     }
 
-    updateArticulo(){
-
+    async updateArticulo(req:Request, res:Response):Promise<void>{
+        const {url} = req.params;
+        console.log(url);
+        const articulo = await Articulo.findOneAndUpdate({url}, req.body, {new:true});
+        res.json({status: res.status , data: articulo});
     }
 
-    deleteArticulo(){
-
+    async deleteArticulo(req: Request, res:Response){
+        const {name}=req.params; 
+        console.log(name);
+        await Articulo.findOneAndDelete({name});
+        res.json({response: "Articulo eliminado"});
     }
 
     routes(){
-        this.router.get('/posts', this.getArticulos);
-        this.router.get('/posts:url', this.getArticulo);
-        this.router.post('/posts', this.createArticulo);
-        this.router.put('post:url', this.updateArticulo);
-        this.router.delete('/posts:url', this.deleteArticulo);
+        this.router.get('/', this.getArticulos);
+        this.router.get('/:url', this.getArticulo);
+        this.router.post('/', this.createArticulo);
+        this.router.put('/:url', this.updateArticulo);
+        this.router.delete('/:url', this.deleteArticulo);
     }
 
 

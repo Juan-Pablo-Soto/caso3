@@ -7,7 +7,7 @@ var IndexRoutes = /** @class */ (function () {
         this.routes();
     }
     IndexRoutes.prototype.routes = function () {
-        this.router.get('/', function (req, res) { return res.send('Api: /api/posts'); });
+        this.router.get('/', function (req, res) { return res.send('Api: /api'); });
     };
     return IndexRoutes;
 }());

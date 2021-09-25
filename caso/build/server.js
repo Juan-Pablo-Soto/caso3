@@ -28,7 +28,7 @@ var Server = /** @class */ (function () {
     };
     Server.prototype.routes = function () {
         this.app.use(indexRoutes_1.default);
-        this.app.use('/api', ArticuloRoutes_1.default);
+        this.app.use('/api/articulos', ArticuloRoutes_1.default);
     };
     Server.prototype.start = function () {
         var _this = this;
