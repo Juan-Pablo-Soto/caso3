@@ -61,8 +61,21 @@ var ArticuloRoutes = /** @class */ (function () {
         });
     };
     ArticuloRoutes.prototype.getArticulo = function (req, res) {
-        console.log(req.body);
-        res.json('Received');
+        return __awaiter(this, void 0, void 0, function () {
+            var url, articulo;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        url = req.params.url;
+                        console.log(url);
+                        return [4 /*yield*/, articulo_1.default.findOne({ name: url })];
+                    case 1:
+                        articulo = _a.sent();
+                        res.json({ data: articulo });
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     ArticuloRoutes.prototype.createArticulo = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
@@ -81,16 +94,46 @@ var ArticuloRoutes = /** @class */ (function () {
             });
         });
     };
-    ArticuloRoutes.prototype.updateArticulo = function () {
+    ArticuloRoutes.prototype.updateArticulo = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var url, articulo;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        url = req.params.url;
+                        console.log(url);
+                        return [4 /*yield*/, articulo_1.default.findOneAndUpdate({ url: url }, req.body, { new: true })];
+                    case 1:
+                        articulo = _a.sent();
+                        res.json({ status: res.status, data: articulo });
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
-    ArticuloRoutes.prototype.deleteArticulo = function () {
+    ArticuloRoutes.prototype.deleteArticulo = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var name;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        name = req.params.name;
+                        console.log(name);
+                        return [4 /*yield*/, articulo_1.default.findOneAndDelete({ name: name })];
+                    case 1:
+                        _a.sent();
+                        res.json({ response: "Articulo eliminado" });
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     ArticuloRoutes.prototype.routes = function () {
-        this.router.get('/posts', this.getArticulos);
-        this.router.get('/posts:url', this.getArticulo);
-        this.router.post('/posts', this.createArticulo);
-        this.router.put('post:url', this.updateArticulo);
-        this.router.delete('/posts:url', this.deleteArticulo);
+        this.router.get('/', this.getArticulos);
+        this.router.get('/:url', this.getArticulo);
+        this.router.post('/', this.createArticulo);
+        this.router.put('/:url', this.updateArticulo);
+        this.router.delete('/:url', this.deleteArticulo);
     };
     return ArticuloRoutes;
 }());
